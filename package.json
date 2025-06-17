@@ -1,0 +1,44 @@
+{
+  "name": "express-response-rest",
+  "version": "1.0.0",
+  "description": "A standardized HTTP response utility class for Express.js APIs",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "release": "npm version patch && npm run changelog && git add CHANGELOG.md && git commit -m \"chore: update changelog\" && git push --follow-tags",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
+  },
+  "keywords": [
+    "express",
+    "response",
+    "http",
+    "api",
+    "typescript",
+    "json",
+    "helper"
+  ],
+  "author": "Harshal Khairnar",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hitraa/express-response-rest"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "conventional-changelog-cli": "^5.0.0",
+    "typescript": "^5.0.0"
+  }
+}

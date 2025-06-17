@@ -1,0 +1,9 @@
+# Ignore these from archive exports
+docs/ export-ignore
+tests/ export-ignore
+.gitignore export-ignore
+.npmignore export-ignore
+tsconfig.json export-ignore
+tsconfig.build.json export-ignore
+.vscode/ export-ignore
+.npmrc export-ignore

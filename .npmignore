@@ -1,0 +1,28 @@
+# Source code
+src/
+tsconfig.json
+tsconfig.build.json
+
+# Tests
+__tests__/
+tests/
+*.test.ts
+*.spec.ts
+
+# Docs and examples
+docs/
+examples/
+
+# Dev files
+*.log
+.vscode/
+.idea/
+.env
+.git/
+.gitignore
+.gitattributes
+npm-debug.log*
+
+# Unused outputs
+coverage/
+build/
