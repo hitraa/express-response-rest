@@ -1,6 +1,6 @@
 {
   "name": "express-response-rest",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A standardized HTTP response utility class for Express.js APIs",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
