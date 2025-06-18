@@ -1,28 +1,28 @@
 import { Response, Request, NextFunction } from 'express';
-import { HttpResponse } from './HttpResponse';
+import { ErrorResponseOptions, HttpResponse, SuccessResponseOptions } from './HttpResponse';
 
 // Augment Express Response type to include our custom methods
 declare module 'express-serve-static-core' {
-  interface Response {
-    success: (options?: any) => void;
-    created: (options?: any) => void;
-    accepted: (options?: any) => void;
-    noContent: () => void;
-    badRequest: (options?: any) => void;
-    unauthorized: (options?: any) => void;
-    forbidden: (options?: any) => void;
-    notFound: (options?: any) => void;
-    notAcceptable: (options?: any) => void;
-    conflict: (options?: any) => void;
-    gone: (options?: any) => void;
-    unsupportedMediaType: (options?: any) => void;
-    unprocessableEntity: (options?: any) => void;
-    tooManyRequests: (options?: any) => void;
-    error: (options?: any) => void;
-    serverError: (options?: any) => void;
-    notImplemented: (options?: any) => void;
-    serviceUnavailable: (options?: any) => void;
-  }
+	interface Response {
+		success: (options?: SuccessResponseOptions) => void;
+		created: (options?: SuccessResponseOptions) => void;
+		accepted: (options?: SuccessResponseOptions) => void;
+		noContent: () => void;
+		badRequest: (options?: ErrorResponseOptions) => void;
+		unauthorized: (options?: ErrorResponseOptions) => void;
+		forbidden: (options?: ErrorResponseOptions) => void;
+		notFound: (options?: ErrorResponseOptions) => void;
+		notAcceptable: (options?: ErrorResponseOptions) => void;
+		conflict: (options?: ErrorResponseOptions) => void;
+		gone: (options?: ErrorResponseOptions) => void;
+		unsupportedMediaType: (options?: ErrorResponseOptions) => void;
+		unprocessableEntity: (options?: ErrorResponseOptions) => void;
+		tooManyRequests: (options?: ErrorResponseOptions) => void;
+		error: (options?: ErrorResponseOptions) => void;
+		serverError: (options?: ErrorResponseOptions) => void;
+		notImplemented: (options?: ErrorResponseOptions) => void;
+		serviceUnavailable: (options?: ErrorResponseOptions) => void;
+	}
 }
 
 /**
@@ -34,30 +34,30 @@ declare module 'express-serve-static-core' {
  * @param next Express NextFunction callback
  */
 export function responseMiddleware(
-  req: Request,
-  res: Response,
-  next: NextFunction
+	req: Request,
+	res: Response,
+	next: NextFunction
 ): void {
 	const httpResponse = new HttpResponse(res);
 
-	res.success = httpResponse.success;
-	res.created = httpResponse.created;
-	res.accepted = httpResponse.accepted;
-	res.noContent = httpResponse.noContent;
-	res.badRequest = httpResponse.badRequest;
-	res.unauthorized = httpResponse.unauthorized;
-	res.forbidden = httpResponse.forbidden;
-	res.notFound = httpResponse.notFound;
-	res.notAcceptable = httpResponse.notAcceptable;
-	res.conflict = httpResponse.conflict;
-	res.gone = httpResponse.gone;
-	res.unsupportedMediaType = httpResponse.unsupportedMediaType;
-	res.unprocessableEntity = httpResponse.unprocessableEntity;
-	res.tooManyRequests = httpResponse.tooManyRequests;
-	res.error = httpResponse.error;
-	res.serverError = httpResponse.serverError;
-	res.notImplemented = httpResponse.notImplemented;
-	res.serviceUnavailable = httpResponse.serviceUnavailable;
+	res.success = (options?: SuccessResponseOptions): void => httpResponse.success(options);
+	res.created = (options?: SuccessResponseOptions): void => httpResponse.created(options);
+	res.accepted = (options?: SuccessResponseOptions): void => httpResponse.accepted(options);
+	res.noContent = (): void => httpResponse.noContent();
+	res.badRequest = (options?: ErrorResponseOptions): void => httpResponse.badRequest(options);
+	res.unauthorized = (options?: ErrorResponseOptions): void => httpResponse.unauthorized(options);
+	res.forbidden = (options?: ErrorResponseOptions): void => httpResponse.forbidden(options);
+	res.notFound = (options?: ErrorResponseOptions): void => httpResponse.notFound(options);
+	res.notAcceptable = (options?: ErrorResponseOptions): void => httpResponse.notAcceptable(options);
+	res.conflict = (options?: ErrorResponseOptions): void => httpResponse.conflict(options);
+	res.gone = (options?: ErrorResponseOptions): void => httpResponse.gone(options);
+	res.unsupportedMediaType = (options?: ErrorResponseOptions): void => httpResponse.unsupportedMediaType(options);
+	res.unprocessableEntity = (options?: ErrorResponseOptions): void => httpResponse.unprocessableEntity(options);
+	res.tooManyRequests = (options?: ErrorResponseOptions): void => httpResponse.tooManyRequests(options);
+	res.error = (options?: ErrorResponseOptions): void => httpResponse.error(options);
+	res.serverError = (options?: ErrorResponseOptions): void => httpResponse.serverError(options);
+	res.notImplemented = (options?: ErrorResponseOptions): void => httpResponse.notImplemented(options);
+	res.serviceUnavailable = (options?: ErrorResponseOptions): void => httpResponse.serviceUnavailable(options);
 
 	next();
 }
