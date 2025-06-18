@@ -112,7 +112,7 @@ app.get('/error', (req, res) => {
 
 All JSON responses follow this structure:
 
-```json
+```javascript
 {
   "status": "success" | "error",
   "message": "String message",
