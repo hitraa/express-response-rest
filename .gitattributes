@@ -1,5 +1,6 @@
 # Ignore these from archive exports
 docs/ export-ignore
+scripts/ export-ignore
 tests/ export-ignore
 .gitignore export-ignore
 .npmignore export-ignore

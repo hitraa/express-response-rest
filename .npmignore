@@ -11,6 +11,7 @@ tests/
 
 # Docs and examples
 docs/
+scripts/
 examples/
 
 # Dev files
